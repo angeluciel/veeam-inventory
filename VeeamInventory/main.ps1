@@ -140,7 +140,7 @@ function Main {
         }
 
         if ($NoSave) {
-            Write-Log "NoSave param specified, exiting." -Level LOG -Context "N8N"
+            Write-Log "NoSave param specified, exiting." -Level INFO -Context "N8N"
             exit 0
         }
 
