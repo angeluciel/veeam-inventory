@@ -49,7 +49,7 @@ function Get-BackupStatus {
 
         $result += [PSCustomObject]@{
             VM          = $name
-            HasBackup   = $true
+            HasBackup   = $isCurrent
             LastBackup  = $entry.LastBackup
             HoursBehind = [math]::Round($hours, 1)
             DaysBehind  = $days

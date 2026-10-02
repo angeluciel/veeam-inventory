@@ -1,7 +1,8 @@
 param(
     [string]$ConfigPath = (
         Join-Path $PSScriptRoot '..\config.psd1'
-    )
+    ),
+    [switch]$NoSave
 )
 
 $repoRoot = Split-Path $PSScriptRoot -Parent
@@ -136,6 +137,11 @@ function Main {
             vmBackupStatus      = @($backupStatus)
             protectedVMs        = @($vmsWithBackup | Select-Object -ExpandProperty VM)
             unprotectedVMs      = @($vmsWithoutBackup | Select-Object -ExpandProperty VM)
+        }
+
+        if ($NoSave) {
+            Write-Log "NoSave param specified, exiting." -Level LOG -Context "N8N"
+            exit 0
         }
 
         $sent = Send-N8nWebhook `
